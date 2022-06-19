@@ -1,3 +1,5 @@
+
+// beginner code to start the html page
 startHtml = () => {
     const html = `<!DOCTYPE html>
     <html lang="en">
@@ -21,3 +23,11 @@ startHtml = () => {
     })
     console.log('html start')
 }
+
+// html to be added when an employee is added
+
+
+
+// code to be added when all employees are added
+
+module.exports = startHtml
