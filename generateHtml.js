@@ -24,10 +24,90 @@ startHtml = () => {
     console.log('html start')
 }
 
+employeeHtml = (data) => {
+    return new Promise(function(resolve, reject) {
+        const name = data.getName()
+        const role = data.getRole()
+        const id = data.getId()
+        const email = data.getEmail()
+        let htmlCode = ''
+        if(role == 'Employee') {
+            htmlCode = `            <div class="col-md align-self-center">
+            <div class="card mx-auto mt-3 mb-3" style="width: 21rem">
+            <h5 class="card-header bg-secondary text-light">${name}<br /><br /> ${role}</h5>
+            <ul class="list-group p-3">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+            </ul>
+            </div>
+        </div>`
+        } if(role == 'Engineer') {
+            const gitHub = data.getGitHub()
+            htmlCode = `            <div class="col-md align-self-center">
+            <div class="card mx-auto mt-3 bg-red-200 mb-3" style="width: 21rem">
+            <h5 class="card-header bg-success text-light">${name}<br /><br />${role}</h5>
+            <ul class="list-group p-3">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">GitHub: ${gitHub}</li>
+            </ul>
+            </div>
+        </div>`
+        } if(role == 'Intern') {
+            const school = data.getSchool()
+            htmlCode=`            <div class="col-md align-self-center">
+            <div class="card mx-auto mt-3 mb-3" style="width: 21rem">
+            <h5 class="card-header bg-info text-light">${name}<br /><br />${role}</h5>
+            <ul class="list-group p-3">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">School: ${school}</li>
+            </ul>
+            </div>
+        </div>`
+        } if(role == 'Manager') {
+            const number = data.getNumber()
+            htmlCode=`            <div class="col-md align-self-center">
+            <div class="card mx-auto mt-3 mb-3" style="width: 21rem">
+            <h5 class="card-header bg-primary text-light">${name}<br /><br />${role}</h5>
+            <ul class="list-group p-3">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">Office No.: ${number}</li>
+            </ul>
+            </div>
+        </div>`
+        }
+        console.log('added employee')
+        fs.appendFile('./pages/team.html', html, funciton (err), {
+            if (err) {
+                return reject(err)
+            } 
+        }); return resolve()
+    })
+}
+
+finishHtml = () => {
+    const html = `        </div>
+    </div>            
+</body>
+</html>`;
+
+    fs.appendFile('./pages/team.html', html, funciton (err), {
+        if (err) {
+            console.log(err)
+        }
+    }); console.log('finnish')
+}
+
 // html to be added when an employee is added
 
 
 
 // code to be added when all employees are added
 
-module.exports = startHtml
+module.exports = {
+    startHtml : startHtml,
+    employeeHtml : employeeHtml,
+    finishHtml : finishHtml
+}

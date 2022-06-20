@@ -10,7 +10,7 @@ const empQuestions = () => {
             type: 'list',
             name: 'role',
             message: 'Select role of Employee',
-            choices: ['employee', 'engineer', 'intern', 'manager']
+            choices: ['Employee', 'Engineer', 'Intern', 'Manager']
         },{
             type: 'input',
             name: 'name',
@@ -23,8 +23,29 @@ const empQuestions = () => {
             type: 'input',
             name: 'email',
             message: 'Enter email of employee',
-        }
-    ])
+        },
+    ]) .then((data) => {
+        let addInfo = ''
+        let role = data.role
+        if (role == "Engineer") {
+            addInfo = 'GitHub'
+        } else if (role == 'Intern') {
+            addInfo = "school"
+        } else if (role == 'Manager') {
+            addInfo = 'number'
+        } inquirer.prompt([
+            {
+            type: 'input',
+            message: `Enter employee ${addInfo}`,
+            name: 'addInfo',
+        },{
+            type: 'list',
+            message: 'Add another employee?',
+            name: 'addMember',
+            choices: [ "Yes", "No"]
+        }])
+        
+    })
 }
 // add questons that are contingent upon which role is selected for employee
 
@@ -35,8 +56,8 @@ const empQuestions = () => {
 // program start
 const init = () => {
     empQuestions()
-    .then(() => console.log("You've Entered An Employee For No Reason!"))
     .catch((err) => console.error(err))
+
 }
 
 init()
