@@ -1,4 +1,6 @@
-const fs = require('fs')
+const Engineer = require("../classList.js")
+
+const fs = require('fs-js')
 
 jest.mock("fs");
 
@@ -20,7 +22,7 @@ describe('engineer', () => {
     it('Can get github name role via getGithub()', () => {
         const testGitHub = "RickyTickyToc"
         const emp = new Engineer("Rick", "123", "rick.test@test.com", testGitHub)
-        expect(emp.getGithub()).toBe(testGitHub)
+        expect(emp.getGitHub()).toBe(testGitHub)
     })
 })
 

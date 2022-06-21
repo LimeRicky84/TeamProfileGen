@@ -1,7 +1,11 @@
 const inquirer = require('inquirer')
 const jest = require('jest')
-const fs = require('fs')
+const fs = require('fs-js')
 const generate = require ('./generateHtml.js')
+const Employee = require("./classList.js")
+const Engineer = require("./classList.js")
+const Intern = require("./classList.js")
+const Manager = require("./classList.js")
 
 // questons to record employee data
 const empQuestions = () => {
@@ -27,6 +31,7 @@ const empQuestions = () => {
     ]) .then((data) => {
         let addInfo = ''
         let role = data.role
+
         if (role == "Engineer") {
             addInfo = 'GitHub'
         } else if (role == 'Intern') {
@@ -45,6 +50,28 @@ const empQuestions = () => {
             choices: [ "Yes", "No"]
         }])
         
+    }) .then((answer) => {
+        let newEmployee
+        let role = answer.role
+
+        if (role == 'Engineer') {
+            newEmployee = new Engineer (name, id, email, role, gitHub)
+        } if (role == 'Intern') {
+            newEmployee = new Intern (name, id, email, role, school)
+        } if (role == 'Manager') {
+            newEmployee = new Manager (name, id, email, role, number)
+        } else {
+            newEmployee = new Employee (name, id, email, role)
+        }
+        employees.push(newEmployee)
+        employeeHtml(newEmployee)
+        .then(() => {
+            if(addMember == "Yes") {
+                empQuestions()
+            } else {
+                finishHtml()
+            }
+        })
     })
 }
 // add questons that are contingent upon which role is selected for employee
@@ -55,6 +82,7 @@ const empQuestions = () => {
 
 // program start
 const init = () => {
+    startHtml()
     empQuestions()
     .catch((err) => console.error(err))
 

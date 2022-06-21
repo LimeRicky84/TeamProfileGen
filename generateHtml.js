@@ -1,4 +1,4 @@
-
+const fs = require('fs-js')
 // beginner code to start the html page
 startHtml = () => {
     const html = `<!DOCTYPE html>
@@ -16,7 +16,7 @@ startHtml = () => {
         </nav>
         <div class="container">
             <div class="row">`
-    fs.writeFile('./pages/team.html', html, funciton (err), {
+    fs.writeFile('./pages/team.html', html, function(err) {
         if (err) {
             console.log(err)
         }
@@ -107,7 +107,7 @@ finishHtml = () => {
 // code to be added when all employees are added
 
 module.exports = {
-    startHtml : startHtml,
-    employeeHtml : employeeHtml,
-    finishHtml : finishHtml
+    startHtml() {},
+    employeeHtml() {},
+    finishHtml() {}
 }

@@ -1,4 +1,5 @@
-const fs = require('fs')
+const Employee = require("../classList.js")
+const fs = require('fs-js')
 
 jest.mock("fs");
 
@@ -18,7 +19,7 @@ describe('employee', () => {
 
     it('will set email in terminal', () => {
         const testEmail = "rick.test@test.com"
-        const emp = new Employee('Rick', testEmail)
+        const emp = new Employee('Rick', "123", testEmail)
         expect(emp.email).toBe(testEmail)
     })
 
@@ -49,8 +50,7 @@ describe('employee', () => {
     describe('getRole', () => {
         it("Can get employee role via getRole()", () =>{
             const testRole = "Employee"
-            const emp = new Employee("Rick", "123", "rick.test@test.com")
-            expect(emp.getRole()).toBe(testRole)
+            const emp = new Employee
         })
     })
 })
