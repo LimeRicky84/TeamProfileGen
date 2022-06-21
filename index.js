@@ -6,6 +6,7 @@ const Employee = require("./classList.js")
 const Engineer = require("./classList.js")
 const Intern = require("./classList.js")
 const Manager = require("./classList.js")
+const employees = []
 
 // questons to record employee data
 const empQuestions = () => {
@@ -30,13 +31,13 @@ const empQuestions = () => {
         },
     ]) .then((data) => {
         let addInfo = ''
-        let role = data.role
+        let eRole = data.role
 
-        if (role == "Engineer") {
+        if (eRole == "Engineer") {
             addInfo = 'GitHub'
-        } else if (role == 'Intern') {
+        } else if (eRole == 'Intern') {
             addInfo = "school"
-        } else if (role == 'Manager') {
+        } else if (eRole == 'Manager') {
             addInfo = 'number'
         } inquirer.prompt([
             {
@@ -48,31 +49,33 @@ const empQuestions = () => {
             message: 'Add another employee?',
             name: 'addMember',
             choices: [ "Yes", "No"]
-        }])
+        }
+        ])
         
-    }) .then((answer) => {
+     .then((data) => {
         let newEmployee
-        let role = answer.role
+        let member = data.addMember
 
-        if (role == 'Engineer') {
-            newEmployee = new Engineer (name, id, email, role, gitHub)
-        } if (role == 'Intern') {
-            newEmployee = new Intern (name, id, email, role, school)
-        } if (role == 'Manager') {
-            newEmployee = new Manager (name, id, email, role, number)
-        } else {
-            newEmployee = new Employee (name, id, email, role)
+        if (eRole == 'Engineer') {
+            newEmployee = new Engineer (data.name, data.id, data.email, eRole, data.gitHub)
+        } if (eRole == 'Intern') {
+            newEmployee = new Intern (data.name, data.id, data.email, eRole, data.school)
+        } if (eRole == 'Manager') {
+            newEmployee = new Manager (data.name, data.id, data.email, eRole, data.number)
+        } if (eRole == 'Employee') {
+            newEmployee = new Employee (data.name, data.id, data.email, eRole)
         }
         employees.push(newEmployee)
         employeeHtml(newEmployee)
         .then(() => {
-            if(addMember == "Yes") {
+            if(member == "Yes") {
                 empQuestions()
             } else {
                 finishHtml()
             }
         })
     })
+})
 }
 // add questons that are contingent upon which role is selected for employee
 
@@ -89,3 +92,5 @@ const init = () => {
 }
 
 init()
+
+module.exports = empQuestions

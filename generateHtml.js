@@ -1,4 +1,5 @@
 const fs = require('fs-js')
+const main = require ('./index.js')
 // beginner code to start the html page
 startHtml = () => {
     const html = `<!DOCTYPE html>
@@ -79,7 +80,7 @@ employeeHtml = (data) => {
         </div>`
         }
         console.log('added employee')
-        fs.appendFile('./pages/team.html', html, funciton (err), {
+        fs.appendFile('./pages/team.html', htmlCode, function (err) {
             if (err) {
                 return reject(err)
             } 
@@ -88,12 +89,12 @@ employeeHtml = (data) => {
 }
 
 finishHtml = () => {
-    const html = `        </div>
+    const htmlFin = `        </div>
     </div>            
 </body>
 </html>`;
 
-    fs.appendFile('./pages/team.html', html, funciton (err), {
+    fs.appendFile('./pages/team.html', htmlFin, function (err) {
         if (err) {
             console.log(err)
         }

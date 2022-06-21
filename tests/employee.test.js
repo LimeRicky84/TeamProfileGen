@@ -50,7 +50,8 @@ describe('employee', () => {
     describe('getRole', () => {
         it("Can get employee role via getRole()", () =>{
             const testRole = "Employee"
-            const emp = new Employee
+            const emp = new Employee('Rick', '123',"rick.test@test.com")
+            expect(emp.getRole()).toBe(testRole)
         })
     })
 })
