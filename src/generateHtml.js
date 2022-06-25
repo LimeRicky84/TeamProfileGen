@@ -1,5 +1,5 @@
 const fs = require('fs-js')
-const main = require ('./index.js')
+const main = require ('../index.js')
 // beginner code to start the html page
 startHtml = () => {
     const html = `<!DOCTYPE html>
@@ -17,20 +17,20 @@ startHtml = () => {
         </nav>
         <div class="container">
             <div class="row">`
-    fs.writeFile('./pages/team.html', html, function(err) {
+    fs.writeFile('./dist/team.html', html, function(err) {
         if (err) {
             console.log(err)
         }
     })
     console.log('html start')
 }
-
-employeeHtml = (data) => {
+// appended code for each individual employee
+employeeHtml = (member) => {
     return new Promise(function(resolve, reject) {
-        const name = data.getName()
-        const role = data.getRole()
-        const id = data.getId()
-        const email = data.getEmail()
+        const name = member.getName()
+        const role = member.getRole()
+        const id = member.getId()
+        const email = member.getEmail()
         let htmlCode = ''
         if(role == 'Employee') {
             htmlCode = `            <div class="col-md align-self-center">
@@ -43,7 +43,7 @@ employeeHtml = (data) => {
             </div>
         </div>`
         } if(role == 'Engineer') {
-            const gitHub = data.getGitHub()
+            const gitHub = member.getGitHub()
             htmlCode = `            <div class="col-md align-self-center">
             <div class="card mx-auto mt-3 bg-red-200 mb-3" style="width: 21rem">
             <h5 class="card-header bg-success text-light">${name}<br /><br />${role}</h5>
@@ -55,7 +55,7 @@ employeeHtml = (data) => {
             </div>
         </div>`
         } if(role == 'Intern') {
-            const school = data.getSchool()
+            const school = member.getSchool()
             htmlCode=`            <div class="col-md align-self-center">
             <div class="card mx-auto mt-3 mb-3" style="width: 21rem">
             <h5 class="card-header bg-info text-light">${name}<br /><br />${role}</h5>
@@ -67,7 +67,7 @@ employeeHtml = (data) => {
             </div>
         </div>`
         } if(role == 'Manager') {
-            const number = data.getNumber()
+            const number = member.getNumber()
             htmlCode=`            <div class="col-md align-self-center">
             <div class="card mx-auto mt-3 mb-3" style="width: 21rem">
             <h5 class="card-header bg-primary text-light">${name}<br /><br />${role}</h5>
@@ -80,21 +80,22 @@ employeeHtml = (data) => {
         </div>`
         }
         console.log('added employee')
-        fs.appendFile('./pages/team.html', htmlCode, function (err) {
+        fs.appendFile('./dist/team.html', htmlCode, function (err) {
             if (err) {
                 return reject(err)
             } 
         }); return resolve()
     })
 }
-
+// finish document
 finishHtml = () => {
-    const htmlFin = `        </div>
+    const htmlFin = 
+    `        </div>
     </div>            
 </body>
 </html>`;
 
-    fs.appendFile('./pages/team.html', htmlFin, function (err) {
+    fs.appendFile('./dist/team.html', htmlFin, function (err) {
         if (err) {
             console.log(err)
         }

@@ -1,4 +1,4 @@
-const Employee = require("../classList.js")
+const Employee = require("../lib/employee.js")
 const fs = require('fs-js')
 
 jest.mock("fs");
@@ -24,7 +24,7 @@ describe('employee', () => {
     })
 
     describe('getName', () => {
-        it("Can get name via getName()", () =>{
+        it("Can get name via getName()", () => {
             const testName = "Rick"
             const emp = new Employee(testName)
             expect(emp.getName()).toBe(testName)

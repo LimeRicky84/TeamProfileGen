@@ -1,5 +1,5 @@
 
-const Intern = require("../classList.js")
+const Intern = require("../lib/intern.js")
 const fs = require('fs-js')
 
 jest.mock("fs");
@@ -9,7 +9,7 @@ describe('intern', () => {
     it('will set school in terminal', () => {
         const testSchool = "ToadSchool"
         const emp = new Intern("Rick", "123", "rick.test@test.com", testSchool)
-        expect(emp.addInfo).toBe(testSchool)
+        expect(emp.school).toBe(testSchool)
     })
 
     describe('getRole', () => {

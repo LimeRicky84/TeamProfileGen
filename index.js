@@ -1,14 +1,14 @@
 const inquirer = require('inquirer')
 const jest = require('jest')
 const fs = require('fs-js')
-const generate = require ('./generateHtml.js')
-const Employee = require("./classList.js")
-const Engineer = require("./classList.js")
-const Intern = require("./classList.js")
-const Manager = require("./classList.js")
+const generate = require ('./src/generateHtml.js')
+const Employee = require("./lib/employee.js")
+const Engineer = require("./lib/engineer.js")
+const Intern = require("./lib/intern.js")
+const Manager = require("./lib/manager.js")
 const employees = []
 
-// questons to record employee data
+// questons to record employee data common to all classes
 const empQuestions = () => {
     return inquirer.prompt([
         {
@@ -29,12 +29,16 @@ const empQuestions = () => {
             name: 'email',
             message: 'Enter email of employee',
         },
+        // class specific questions
     ]) .then((data) => {
         let addInfo = ''
+        let eName = data.name
         let eRole = data.role
+        let eId = data.id
+        let eEmail = data.email
 
         if (eRole == "Engineer") {
-            addInfo = 'GitHub'
+            addInfo = 'gitHub'
         } else if (eRole == 'Intern') {
             addInfo = "school"
         } else if (eRole == 'Manager') {
@@ -51,20 +55,25 @@ const empQuestions = () => {
             choices: [ "Yes", "No"]
         }
         ])
-        
+        // send data to getFunctions
      .then((data) => {
         let newEmployee
         let member = data.addMember
+        let eGitHub = data.github
+        let eSchool = data.school
+        let eNumber = data.number
 
         if (eRole == 'Engineer') {
-            newEmployee = new Engineer (data.name, data.id, data.email, eRole, data.gitHub)
+            newEmployee = new Engineer (eName, eId, eEmail, eRole, eGitHub)
         } if (eRole == 'Intern') {
-            newEmployee = new Intern (data.name, data.id, data.email, eRole, data.school)
+            newEmployee = new Intern (eName, eId, eEmail, eRole, eSchool)
         } if (eRole == 'Manager') {
-            newEmployee = new Manager (data.name, data.id, data.email, eRole, data.number)
+            newEmployee = new Manager (eName, eId, eEmail, eRole, eNumber)
         } if (eRole == 'Employee') {
-            newEmployee = new Employee (data.name, data.id, data.email, eRole)
+            newEmployee = new Employee (eName, eId, eEmail, eRole)
         }
+
+        // add employeeHtml and complete page
         employees.push(newEmployee)
         employeeHtml(newEmployee)
         .then(() => {

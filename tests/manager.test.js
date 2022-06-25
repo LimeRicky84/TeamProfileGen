@@ -1,7 +1,6 @@
-const Manager = require("../classList.js")
+const Manager = require("../lib/manager.js")
 const fs = require('fs-js');
-const { hasUncaughtExceptionCaptureCallback } = require('process');
-const { isTypedArray } = require('util/types');
+
 
 jest.mock("fs");
 
@@ -9,7 +8,7 @@ describe('manager', () => {
     it('will set office number in terminal', () => {
         const offNumber = "555"
         const emp = new Manager("Rick", "123", "rick.test@test.com", offNumber)
-        expect(emp.addInfo).toBe(offNumber)
+        expect(emp.number).toBe(offNumber)
     })
 
     describe('getRole', () => {
