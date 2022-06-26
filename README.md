@@ -20,7 +20,7 @@
 
   Repository for this project: https://github.com/LimeRicky84/TeamProfileGen
 
-  link to demo vid:
+  link to demo vid: https://github.com/LimeRicky84/TeamProfileGen/blob/main/assets/2022-06-25%2019-46-07.mkv
 
   ## Screenshot
 
