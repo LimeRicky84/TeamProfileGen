@@ -24,4 +24,4 @@
 
   ## Screenshot
 
-   ![img](./assets\test_page.jpg)
+   ![img](https://github.com/LimeRicky84/TeamProfileGen/blob/main/assets/test_page.jpg)
