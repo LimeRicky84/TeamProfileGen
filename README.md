@@ -19,3 +19,9 @@
   My GitHub:  https://github.com/LimeRicky84
 
   Repository for this project: https://github.com/LimeRicky84/TeamProfileGen
+
+  link to demo vid:
+
+  ## Screenshot
+
+   ![img](./assets\test_page.jpg)
