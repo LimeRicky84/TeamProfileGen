@@ -38,7 +38,7 @@ employeeHtml = (member) => {
             <h5 class="card-header bg-secondary text-light">${name}<br /><br /> ${role}</h5>
             <ul class="list-group p-3">
                 <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">Email Address: <a href="mailto:${email}">${email}</a></li>
             </ul>
             </div>
         </div>`
@@ -49,8 +49,8 @@ employeeHtml = (member) => {
             <h5 class="card-header bg-success text-light">${name}<br /><br />${role}</h5>
             <ul class="list-group p-3">
                 <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email Address: ${email}</li>
-                <li class="list-group-item">GitHub: ${gitHub}</li>
+                <li class="list-group-item">Email Address: <a href="mailto:${email}">${email}</a></li>
+                <li class="list-group-item">GitHub: <a href="https://github.com/${gitHub}" target="_blank" rel="noreferrer noopener">${gitHub}</a></li>
             </ul>
             </div>
         </div>`
@@ -61,7 +61,7 @@ employeeHtml = (member) => {
             <h5 class="card-header bg-info text-light">${name}<br /><br />${role}</h5>
             <ul class="list-group p-3">
                 <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">Email Address: <a href="mailto:${email}">${email}</a></li>
                 <li class="list-group-item">School: ${school}</li>
             </ul>
             </div>
@@ -73,13 +73,13 @@ employeeHtml = (member) => {
             <h5 class="card-header bg-primary text-light">${name}<br /><br />${role}</h5>
             <ul class="list-group p-3">
                 <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">Email Address: <a href="mailto:${email}">${email}</a></li>
                 <li class="list-group-item">Office No.: ${number}</li>
             </ul>
             </div>
         </div>`
         }
-        console.log('added employee')
+        console.log('added', role, 'card')
         fs.appendFile('./dist/team.html', htmlCode, function (err) {
             if (err) {
                 return reject(err)
@@ -99,12 +99,10 @@ finishHtml = () => {
         if (err) {
             console.log(err)
         }
-    }); console.log('finnish')
+    }); console.log('Team Profile Generated')
 }
 
 // html to be added when an employee is added
-
-
 
 // code to be added when all employees are added
 
